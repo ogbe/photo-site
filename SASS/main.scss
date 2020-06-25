@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+
+$colors: (
+    primary: mix(white, #000, 70%),
+    link: #000,
+    header-bcg: mix(white, #000, 30%),
+    footer-bcg: #eee
+);
+
+$padding: 15px;
+$default-margin: 0;
+$margins: 20px;
+$borders: 50px;
+$device-width: 100%;
+
+$desktop: 540px;
+
+@function color($color-name) {
+    @return map-get($map: $colors, $key: $color-name);
+};
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+body, html {
+    width: $device-width;
+    overflow-x: hidden;
+}
+
+body {
+    margin: $default-margin;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+
+    @include desktop {
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 30px 0px 40px rgba($color: #000000, $alpha: 0.1), -30px 0px 40px rgba($color: #000000, $alpha: 0.1);
+    }
+
+    #container {
+        width: $device-width;
+
+        #header {
+            
+            @include desktop {
+                display: grid;
+                grid-template-columns: 60% auto;
+                grid-template-areas: "landing-text landing-image";
+                height: 100vh;
+            }
+        }
+
+        #landing-text {
+            margin: 100px auto 70px;
+            display: flex;
+            flex: 0 1 40vw;
+            justify-content: center;
+            align-items: center;
+
+            h1 {
+                font-size: 2.5em;
+                text-transform: uppercase;
+                margin: $default-margin;
+                font-weight: 400;
+            }
+
+            p {
+                text-transform: capitalize;
+                font-size: 1.3em;
+                color: color(primary);
+                margin: $margins $default-margin $margins * 3;
+                padding: 0;
+            }
+
+            a {
+                color: color(link);
+                text-decoration: none;
+                text-transform: capitalize;
+                font-size: 1.1em;
+                padding: $padding $padding * 4;
+                border: 2px solid color(primary);
+                border-radius: $borders;
+            }
+        }
+
+        #landing-image {
+            background: url("../images/bcg-img.jpg") no-repeat;
+            background-size: cover;
+            height: 50vh;
+            flex: 0 1 60vw;
+            margin: $default-margin;
+
+            @include desktop {
+                grid-area: landing-image;
+                height: 100vh;
+            }
+
+            img {
+                height: 100%;
+
+            }
+        }
+
+    }
+
+    section {
+        width: $device-width;
+
+        h3 {
+            text-transform: capitalize;
+            padding: $padding;
+            margin: $margins / 2;
+            font-size: 1.5em;
+            font-weight: 500;
+        }
+
+        img {
+            width: $device-width;
+        }
+
+        p {
+            width: 95%;
+            margin: auto;
+            font-size: 1.1em;
+            padding-bottom: $padding * 2;
+        }
+    }
+
+    #work {
+        background-color: color(header-bcg);
+        padding: 20px 0;
+
+        h3 {
+            color: #fff;
+            padding: 5px 10px;
+            border-left: 1px dotted #fff;
+            border-right: 1px dotted #fff;
+            font-weight: 100;
+            text-transform: capitalize;
+            font-size: 1.3em;
+            padding: 5px 20px;
+            margin: $default-margin;
+            display: inline-block;
+        }
+    }
+
+
+    footer {
+        text-align: center;
+        background-color: color(footer-bcg);
+        padding: 0;
+        margin: $default-margin;
+        padding-top: 100px;
+
+        h1 {
+            font-size: 3em;
+            text-transform: capitalize;
+            font-weight: 400;
+        }    
+    }
+
+    p {
+        font-size: 1.1em;
+        padding: 0 $padding;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+    
+    ul {
+        list-style: none;
+        padding: $padding;
+        text-align: center;
+        width: 60%;
+        margin: auto;
+
+    }
+
+    li {
+        display: inline;
+        padding: $padding;
+        
+    }
+
+    a {
+
+        img {
+            width: 10%;
+            height: 20%;
+        }
+    }
+}
+
